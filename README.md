@@ -1,6 +1,8 @@
 # go-blobqueue
 
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/blueboardio/go-blobqueue)
+[![Coverage](https://codecov.io/gh/blueboardio/go-blobqueue/branch/master/graph/badge.svg)](https://codecov.io/gh/blueboardio/go-blobqueue/branch/master)
+[![Build](https://travis-ci.org/blueboardio/go-blobqueue.svg?branch=master)](https://travis-ci.org/blueboardio/go-blobqueue)
 
 ## About
 
