@@ -1,0 +1,31 @@
+language: go
+install: true
+sudo: false
+go_import_path: github.com/blueboardio/go-blobqueue
+
+services:
+- redis-server
+
+env:
+  global:
+  - secure: v+H7j8pEXQHDTmublLfllfAkdOnyIU99hTaR8wUdfS0chJWcKcmLQgi6soeO4EPH3V022uQiGroA55JNqkPol5zhMWZdGhPlpngXpNamdYl9gV/QcCjxSg0BiLsuoCE0Yu4tvDOTXmI31MC7xEprLv4RS6ZJdNmzsNsSzQyM8hmOU3D8SyPQ58Y9jJE/pzfa1kpO1KYtiqGnlNGW/VUFbtvmKPIgOTOvnfNvuiw9QQvevNZ9nHNCXc0TXBgvrxnUeCBmaYIaJJ/9TWwyp8yQIZV8sX9O+0bK8tRAKsSqlaiytOnXJoy9ibMcLT/QzQrPdclpzlcH7LEEE9U9gp/l7qUteCYkQP36U+w3tGLblBpCrpdzbHtSmT7gFgznwRpw0fjopsUQ3A5tVS8jRNvRwENYUgx/WuOtV6JljDKDgUViuDdxKMH4EiblBJe1JdNbJdC52+2kT7yobCvEC3f26RcItFP8yQrA1+Xzq2OYZuXcjIlrVQVYwiSCA44HW167c6RISj7WusYXeOSzXk1zVNXMSZmwdF7tcgbPAnooAAZXiMoyq/EH7FFrCUcefQl4fFsLPO4F5q5qmNgGnetpBy+XS536HF49mqSMB3MwPxID9tTO38lMLH1N2GvoMqlECvggqRaBPQFY++NTgDW4b6rIGpND2+voWmZMzBCb6z0=
+  - GO111MODULE=on
+  - TEST_QUEUEREDIS_ADDR="localhost:6379"
+  - TEST_QUEUEREDIS_DB=0
+
+matrix:
+  include:
+  - go: 1.9.x
+    script:
+    - go get -t -v ./...
+    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
+  - go: 1.10.x
+    script:
+    - go get -t -v ./...
+    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
+  - go: 1.11.x
+    script:
+    - go test -v github.com/blueboardio/go-blobqueue/... -coverprofile=coverage.out
+      -bench=.
+    - bash <(curl -s https://codecov.io/bash)
+
