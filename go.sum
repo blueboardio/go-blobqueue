@@ -1,10 +1,5 @@
-github.com/blueboardio/go-blobqueue v0.0.0-20181121101351-f4c4ca0e90e7/go.mod h1:zzMMUQG5+EVRK04/xyZZMmG4sF2sTeGbz1k2Gz8wBRE=
-github.com/blueboardio/go-blobqueue/queueredis v0.0.0-20181121101608-071a764cb0b5 h1:14BFEs2kxhSupMCOjcniPVokdk/JInpA31BCnQoDOFs=
-github.com/blueboardio/go-blobqueue/queueredis v0.0.0-20181121101608-071a764cb0b5/go.mod h1:fs1wArmCvthB1O9Icku/ZIUQ8BIdr/n16dW20SqARnE=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-redis/redis v6.14.2+incompatible h1:UE9pLhzmWf+xHNmZsoccjXosPicuiNaInPgym8nzfg0=
-github.com/go-redis/redis v6.14.2+incompatible/go.mod h1:NAIEuMOZ/fxfXJIrKDQDz8wamY7mA7PouImQ2Jvg6kA=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/testify v1.2.2 h1:bSDNvY7ZPG5RlJ8otE/7V6gMiyenm9RtJ7IUVIAoJ1w=
