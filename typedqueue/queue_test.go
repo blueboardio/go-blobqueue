@@ -3,6 +3,7 @@ package typedqueue_test
 import (
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -26,6 +27,20 @@ func (u *Uint64) UnmarshalBinary(b []byte) error {
 	}
 	*u = Uint64(tmp)
 	return nil
+}
+
+func Example() {
+	q := typedqueue.New(&memory.Queue{}, Uint64(0))
+
+	_ = q.Push(Uint64(1))
+	_ = q.Push(Uint64(2))
+	_ = q.Push(Uint64(3))
+
+	li, _ := q.List()
+	fmt.Printf("%#v\n", li)
+
+	// Output:
+	// []typedqueue_test.Uint64{0x1, 0x2, 0x3}
 }
 
 func TestQueue(t *testing.T) {
