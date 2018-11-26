@@ -2,6 +2,7 @@ package blobqueue_test
 
 import (
 	"fmt"
+	"testing"
 
 	"github.com/blueboardio/go-blobqueue"
 	"github.com/blueboardio/go-blobqueue/memory"
@@ -23,4 +24,27 @@ func ExampleMust() {
 	// 2
 	// BB AA
 	// 0
+}
+
+func expectPanic(t *testing.T, msg string) {
+	if e := recover(); e != nil {
+		errMsg := e.(error).Error()
+		if errMsg != msg {
+			t.Errorf("got panic %v, expected %q", e, msg)
+		}
+	} else {
+		t.Errorf("expected panic %q, got nothing", msg)
+	}
+}
+
+func TestMustPop(t *testing.T) {
+	q := blobqueue.Must{new(memory.Queue)}
+	defer expectPanic(t, blobqueue.ErrQueueIsEmtpy.Error())
+	_ = q.Pop()
+}
+
+func TestMustShift(t *testing.T) {
+	q := blobqueue.Must{new(memory.Queue)}
+	defer expectPanic(t, blobqueue.ErrQueueIsEmtpy.Error())
+	_ = q.Shift()
 }
