@@ -10,14 +10,17 @@ import (
 func ExampleMust() {
 	q := blobqueue.Must{new(memory.Queue)}
 	fmt.Println(q.Len())
-	q.Push([]byte("AA"))
+	q.Unshift([]byte("AA"))
+	q.Push([]byte("BB"))
+	fmt.Printf("%s\n", q.List())
 	fmt.Println(q.Len())
-	fmt.Printf("%s\n", q.Pop())
+	fmt.Printf("%s %s\n", q.Pop(), q.Shift())
 	fmt.Println(q.Len())
 
 	// Output:
 	// 0
-	// 1
-	// AA
+	// [AA BB]
+	// 2
+	// BB AA
 	// 0
 }
