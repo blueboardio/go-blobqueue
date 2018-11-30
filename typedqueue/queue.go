@@ -1,4 +1,4 @@
-// Package typedqueue wraps a blobqueue, with serialization and runtime type checking of values
+// Package typedqueue wraps a blobqueue, with serialization and runtime type checking of values.
 package typedqueue
 
 import (
@@ -85,13 +85,13 @@ func (q *Queue) Push(val encoding.BinaryMarshaler) error {
 	return q.q.Push(encodeValue(q.t, val))
 }
 
-// Unshift add a new elem at the beggining of the queue.
+// Unshift adds a new elem at the begining of the queue.
 func (q *Queue) Unshift(val encoding.BinaryMarshaler) error {
 	return q.q.Unshift(encodeValue(q.t, val))
 }
 
-// Pop deletes the last element of the queue, it returns this precise element.
-// If the queue is empty it returns error ErrQueueIsEmtpy.
+// Pop deletes the last element of the queue and returns this precise element.
+// If the queue is empty it returns error blobqueue.ErrQueueIsEmtpy.
 func (q *Queue) Pop() (encoding.BinaryMarshaler, error) {
 	b, err := q.q.Pop()
 	if err != nil {
@@ -100,8 +100,8 @@ func (q *Queue) Pop() (encoding.BinaryMarshaler, error) {
 	return decodeValue(q.t, b).(encoding.BinaryMarshaler), nil
 }
 
-// Shift deletes the first element of the queue, it returns this precise element.
-// If the queue is empty it returns error ErrQueueIsEmtpy.
+// Shift deletes the first element of the queue and returns this precise element.
+// If the queue is empty it returns error blobqueue.ErrQueueIsEmtpy.
 func (q *Queue) Shift() (encoding.BinaryMarshaler, error) {
 	b, err := q.q.Shift()
 	if err != nil {
