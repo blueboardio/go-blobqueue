@@ -8,6 +8,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	"github.com/blueboardio/go-blobqueue"
 	"github.com/blueboardio/go-blobqueue/memory"
 	"github.com/blueboardio/go-blobqueue/typedqueue"
 )
@@ -51,6 +52,14 @@ func TestQueue(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(li, []Uint64(nil))
 
+	n, err := q.Pop()
+	assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+	assert.Equal(Uint64(0), n) // check zero value
+
+	n, err = q.Shift()
+	assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+	assert.Equal(Uint64(0), n) // check zero value
+
 	l, err := q.Len()
 	assert.NoError(err)
 	assert.Equal(l, 0)
@@ -74,7 +83,7 @@ func TestQueue(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(li, []Uint64{1, 2, 3})
 
-	n, err := q.Pop()
+	n, err = q.Pop()
 	assert.NoError(err)
 	assert.Equal(n, Uint64(3))
 
