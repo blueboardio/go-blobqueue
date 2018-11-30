@@ -48,24 +48,28 @@ func TestQueue(t *testing.T) {
 	assert := assert.New(t)
 	q := typedqueue.New(&memory.Queue{}, Uint64(0))
 
-	li, err := q.List()
-	assert.NoError(err)
-	assert.Equal(li, []Uint64(nil))
+	assertEmpty := func(q *typedqueue.Queue) {
+		l, err := q.Len()
+		assert.NoError(err)
+		assert.Equal(l, 0)
 
-	n, err := q.Pop()
-	assert.Error(err, blobqueue.ErrQueueIsEmtpy)
-	assert.Equal(Uint64(0), n) // check zero value
+		li, err := q.List()
+		assert.NoError(err)
+		assert.Equal(li, []Uint64(nil))
 
-	n, err = q.Shift()
-	assert.Error(err, blobqueue.ErrQueueIsEmtpy)
-	assert.Equal(Uint64(0), n) // check zero value
+		n, err := q.Pop()
+		assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+		assert.Equal(Uint64(0), n) // check zero value
 
-	l, err := q.Len()
-	assert.NoError(err)
-	assert.Equal(l, 0)
+		n, err = q.Shift()
+		assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+		assert.Equal(Uint64(0), n) // check zero value
+	}
+
+	assertEmpty(q)
 
 	q.Push(Uint64(1))
-	l, err = q.Len()
+	l, err := q.Len()
 	assert.NoError(err)
 	assert.Equal(l, 1)
 
@@ -79,11 +83,11 @@ func TestQueue(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(l, 3)
 
-	li, err = q.List()
+	li, err := q.List()
 	assert.NoError(err)
 	assert.Equal(li, []Uint64{1, 2, 3})
 
-	n, err = q.Pop()
+	n, err := q.Pop()
 	assert.NoError(err)
 	assert.Equal(n, Uint64(3))
 
@@ -101,4 +105,10 @@ func TestQueue(t *testing.T) {
 	l, err = q.Len()
 	assert.NoError(err)
 	assert.Equal(l, 1)
+
+	n, err = q.Pop()
+	assert.NoError(err)
+	assert.Equal(n, Uint64(2))
+
+	assertEmpty(q)
 }
