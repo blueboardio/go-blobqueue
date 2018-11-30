@@ -16,8 +16,8 @@ type Value struct {
 
 type Queue struct {
 	q    blobqueue.Queue
-	zero Value
 	t    reflect.Type
+	zero encoding.BinaryMarshaler
 }
 
 // New wraps a queue to store any value of the same type that implements
@@ -30,7 +30,7 @@ func New(q blobqueue.Queue, zeroValue encoding.BinaryMarshaler) *Queue {
 	// Checks of the contract for values
 	_ = decodeValue(t, encodeValue(t, zeroValue))
 
-	return &Queue{q: q, t: t}
+	return &Queue{q: q, t: t, zero: zeroValue}
 }
 
 // Len returns the length of the queue.
