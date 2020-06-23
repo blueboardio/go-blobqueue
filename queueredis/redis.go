@@ -45,7 +45,7 @@ func removeBase(action func(key string) *redis.StringCmd, key string) ([]byte, e
 	val, err := action(key).Bytes()
 	if err != nil {
 		if err == redis.Nil {
-			return nil, blobqueue.ErrQueueIsEmtpy
+			return nil, blobqueue.ErrQueueIsEmpty
 		}
 		return nil, err
 	}
