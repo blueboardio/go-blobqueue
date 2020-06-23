@@ -15,21 +15,10 @@ env:
 
 matrix:
   include:
-  - go: 1.9.x
-    script:
-    - go get -t -v ./...
-    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
-  - go: 1.10.x
-    script:
-    - go get -t -v ./...
-    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
-  - go: 1.11.x
-    script:
-    - go test -v github.com/blueboardio/go-blobqueue/... -coverprofile=coverage.out
-      -bench=.
   - go: 1.14.x
     script:
     - go get -t -v ./...
-    - go test -v github.com/blueboardio/go-blobqueue/... v github.com/blueboardio/go-blobqueue/typedqueue v github.com/blueboardio/go-blobqueue/queueredis -bench=.
+    - go test -v -bench=. github.com/blueboardio/go-blobqueue/...
+    - go test -v -coverprofile=coverage.out github.com/blueboardio/go-blobqueue/... github.com/blueboardio/go-blobqueue/typedqueue github.com/blueboardio/go-blobqueue/queueredis
     - bash <(curl -s https://codecov.io/bash)
 
