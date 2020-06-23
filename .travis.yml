@@ -30,6 +30,6 @@ matrix:
   - go: 1.14.x
     script:
     - go get -t -v ./...
-    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
+    - go test -v github.com/blueboardio/go-blobqueue/... v github.com/blueboardio/go-blobqueue/typedqueue v github.com/blueboardio/go-blobqueue/queueredis -bench=.
     - bash <(curl -s https://codecov.io/bash)
 
