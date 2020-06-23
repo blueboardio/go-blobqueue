@@ -19,11 +19,11 @@ type Queue interface {
 	Unshift(val []byte) error
 
 	// Pop deletes the last element of the queue, it returns this precise element.
-	// If the queue is empty it returns error ErrQueueIsEmtpy.
+	// If the queue is empty it returns error ErrQueueIsEmpty.
 	Pop() ([]byte, error)
 
 	// Shift deletes the first element of the queue, it returns this precise element.
-	// If the queue is empty it returns error ErrQueueIsEmtpy.
+	// If the queue is empty it returns error ErrQueueIsEmpty.
 	Shift() ([]byte, error)
 
 	// Len returns the length of the queue.
@@ -35,7 +35,7 @@ type Queue interface {
 // These variables defines typed errors.
 var (
 	ErrIndexOutOfRange = errors.New("index out of range")
-	ErrQueueIsEmtpy    = errors.New("empty queue")
+	ErrQueueIsEmpty    = errors.New("empty queue")
 )
 
 type safeQueue struct {

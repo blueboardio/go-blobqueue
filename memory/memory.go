@@ -27,7 +27,7 @@ func (q *Queue) Unshift(val []byte) error {
 // Pop implements Queue interface
 func (q *Queue) Pop() ([]byte, error) {
 	if len(*q) == 0 {
-		return nil, blobqueue.ErrQueueIsEmtpy
+		return nil, blobqueue.ErrQueueIsEmpty
 	}
 	save := (*q)[len(*q)-1]
 	*q = (*q)[0 : len(*q)-1]
@@ -37,7 +37,7 @@ func (q *Queue) Pop() ([]byte, error) {
 // Shift implements Queue interface
 func (q *Queue) Shift() ([]byte, error) {
 	if len(*q) == 0 {
-		return nil, blobqueue.ErrQueueIsEmtpy
+		return nil, blobqueue.ErrQueueIsEmpty
 	}
 	save := (*q)[0]
 	*q = (*q)[1:]

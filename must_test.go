@@ -39,12 +39,12 @@ func expectPanic(t *testing.T, msg string) {
 
 func TestMustPop(t *testing.T) {
 	q := blobqueue.Must{new(memory.Queue)}
-	defer expectPanic(t, blobqueue.ErrQueueIsEmtpy.Error())
+	defer expectPanic(t, blobqueue.ErrQueueIsEmpty.Error())
 	_ = q.Pop()
 }
 
 func TestMustShift(t *testing.T) {
 	q := blobqueue.Must{new(memory.Queue)}
-	defer expectPanic(t, blobqueue.ErrQueueIsEmtpy.Error())
+	defer expectPanic(t, blobqueue.ErrQueueIsEmpty.Error())
 	_ = q.Shift()
 }

@@ -54,8 +54,8 @@ var actions = []action{
 	{Type: emptyAction, ShouldErr: false},
 	{Type: lenAction, ExpectLen: 0, ShouldErr: false},
 	{Type: listAction, ExpectList: nil, ShouldErr: false},
-	{Type: popAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmtpy, ExpectVal: nil},
-	{Type: shiftAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmtpy, ExpectVal: nil},
+	{Type: popAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmpty, ExpectVal: nil},
+	{Type: shiftAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmpty, ExpectVal: nil},
 	{Type: lenAction, ExpectLen: 0, ShouldErr: false},
 	{Type: listAction, ExpectList: nil, ShouldErr: false},
 }
