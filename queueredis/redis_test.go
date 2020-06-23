@@ -5,11 +5,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/blueboardio/go-blobqueue"
-
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v7"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/blueboardio/go-blobqueue"
 	"github.com/blueboardio/go-blobqueue/queueredis"
 	"github.com/blueboardio/go-blobqueue/queuetesting"
 )

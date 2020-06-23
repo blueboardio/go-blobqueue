@@ -2,7 +2,7 @@ package queueredis
 
 import (
 	"github.com/blueboardio/go-blobqueue"
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v7"
 )
 
 // Queue is the Redis based implementation of blobqueue.Queue interface
