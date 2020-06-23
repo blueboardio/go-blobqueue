@@ -58,11 +58,11 @@ func TestQueue(t *testing.T) {
 		assert.Equal(li, []Uint64(nil))
 
 		n, err := q.Pop()
-		assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+		assert.Error(err, blobqueue.ErrQueueIsEmpty)
 		assert.Equal(Uint64(0), n) // check zero value
 
 		n, err = q.Shift()
-		assert.Error(err, blobqueue.ErrQueueIsEmtpy)
+		assert.Error(err, blobqueue.ErrQueueIsEmpty)
 		assert.Equal(Uint64(0), n) // check zero value
 	}
 

@@ -91,7 +91,7 @@ func (q *Queue) Unshift(val encoding.BinaryMarshaler) error {
 }
 
 // Pop deletes the last element of the queue and returns this precise element.
-// If the queue is empty it returns error blobqueue.ErrQueueIsEmtpy.
+// If the queue is empty it returns error blobqueue.ErrQueueIsEmpty.
 func (q *Queue) Pop() (encoding.BinaryMarshaler, error) {
 	b, err := q.q.Pop()
 	if err != nil {
@@ -101,7 +101,7 @@ func (q *Queue) Pop() (encoding.BinaryMarshaler, error) {
 }
 
 // Shift deletes the first element of the queue and returns this precise element.
-// If the queue is empty it returns error blobqueue.ErrQueueIsEmtpy.
+// If the queue is empty it returns error blobqueue.ErrQueueIsEmpty.
 func (q *Queue) Shift() (encoding.BinaryMarshaler, error) {
 	b, err := q.q.Shift()
 	if err != nil {
