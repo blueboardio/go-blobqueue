@@ -1,5 +1,7 @@
 module github.com/blueboardio/go-blobqueue/queueredis
 
+go 1.12
+
 require (
 	github.com/blueboardio/go-blobqueue v0.1.1
 	github.com/go-redis/redis v6.14.2+incompatible

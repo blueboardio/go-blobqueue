@@ -27,5 +27,9 @@ matrix:
     script:
     - go test -v github.com/blueboardio/go-blobqueue/... -coverprofile=coverage.out
       -bench=.
+  - go: 1.14.x
+    script:
+    - go get -t -v ./...
+    - go test -v github.com/blueboardio/go-blobqueue/... -bench=.
     - bash <(curl -s https://codecov.io/bash)
 
