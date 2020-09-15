@@ -44,3 +44,13 @@ func Shift(q blobqueue.Queue, v interface{}) error {
 	}
 	return json.Unmarshal(b, v)
 }
+
+// Peek gets the head of the queue without removing it and deserialize it as JSON into v.
+// v must be a pointer (see json.Unmarshal).
+func Peek(q blobqueue.Queue, v interface{}) error {
+	b, err := q.Peek()
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(b, v)
+}

@@ -36,6 +36,14 @@ func TestPushPop(t *testing.T) {
 	}
 
 	var out interface{}
+	err = queuejson.Peek(q, &out)
+	if err != nil {
+		t.Fatal("Peek should work")
+	}
+	if !reflect.DeepEqual(in, out) {
+		t.Fatalf("Peek: Bad value: %#v vs %#v", in, out)
+	}
+
 	err = queuejson.Pop(q, &out)
 	if err != nil {
 		t.Fatal("Pop should work")
