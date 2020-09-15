@@ -26,6 +26,10 @@ type Queue interface {
 	// If the queue is empty it returns error ErrQueueIsEmpty.
 	Shift() ([]byte, error)
 
+	// Peek returns the first element of the list without removing it from the queue.
+	// If the queue is empty it returns error ErrQueueIsEmpty.
+	Peek() ([]byte, error)
+
 	// Len returns the length of the queue.
 	Len() (int, error)
 	// Empty clears the queue.
@@ -84,6 +88,13 @@ func (q *safeQueue) Shift() ([]byte, error) {
 	q.mu.Lock()
 	defer q.mu.Unlock()
 	return q.q.Shift()
+}
+
+// Peek implements Queue interface
+func (q *safeQueue) Peek() ([]byte, error) {
+	q.mu.Lock()
+	defer q.mu.Unlock()
+	return q.q.Peek()
 }
 
 // Len implements Queue interface

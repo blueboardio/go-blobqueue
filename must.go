@@ -46,6 +46,15 @@ func (q Must) Shift() []byte {
 	return val
 }
 
+// Peek transforms errors from Queue.Peek into panic.
+func (q Must) Peek() []byte {
+	val, err := q.Queue.Peek()
+	if err != nil {
+		panic(err)
+	}
+	return val
+}
+
 // Len transforms errors from Queue.Len into panic.
 func (q Must) Len() int {
 	l, err := q.Queue.Len()
