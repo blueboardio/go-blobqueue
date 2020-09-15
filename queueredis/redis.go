@@ -62,6 +62,20 @@ func (q Queue) Shift() ([]byte, error) {
 	return removeBase(q.client.LPop, q.key)
 }
 
+// Peek implements `Queue` interface. It returns the first elem of the Redis list without removing it.
+// It returns ErrQueueIsEmpty if the list is empty.
+func (q Queue) Peek() ([]byte, error) {
+	cmd := q.client.LRange(q.key, 0, 0)
+	if cmd.Err() != nil {
+		return nil, cmd.Err()
+	}
+	val := cmd.Val()
+	if len(val) == 0 {
+		return nil, blobqueue.ErrQueueIsEmpty
+	}
+	return []byte(val[0]), nil
+}
+
 // Len implements `Queue` interface. It returns the length of the Redis list.
 func (q Queue) Len() (int, error) {
 	cmd := q.client.LLen(q.key)

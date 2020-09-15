@@ -1,5 +1,9 @@
 github.com/blueboardio/go-blobqueue v0.3.1 h1:lD/5BOndG3aFPSDLvyMYARSXqU5ZJSKOtH9LeLq9FRo=
 github.com/blueboardio/go-blobqueue v0.3.1/go.mod h1:2++DFT2J51nJW5y262s5LGZzu0ctmuZlSofCHK748UE=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915160536-44d3b8029219 h1:/D4v6Z7GuHgcnANHyttqe4x8rcjccAwK1Eeq/TqN3dA=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915160536-44d3b8029219/go.mod h1:2++DFT2J51nJW5y262s5LGZzu0ctmuZlSofCHK748UE=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915163728-87adbb26c512 h1:ViYyW0smiH+ievOHS7yb6QjJZcYbmZ+Bnx/Lza632d8=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915163728-87adbb26c512/go.mod h1:2++DFT2J51nJW5y262s5LGZzu0ctmuZlSofCHK748UE=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
