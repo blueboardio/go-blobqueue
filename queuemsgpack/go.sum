@@ -1,5 +1,7 @@
 github.com/blueboardio/go-blobqueue v0.4.0 h1:iX5XoS0LbjR6M5N5wS8mAwMX9SfiKf6ASRApeoB1YIo=
 github.com/blueboardio/go-blobqueue v0.4.0/go.mod h1:2++DFT2J51nJW5y262s5LGZzu0ctmuZlSofCHK748UE=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915164425-df0e7a88e75e h1:03aZRbWAqNjL9fdjAtIgOu8yvZisxuUxDvOQODxKLe4=
+github.com/blueboardio/go-blobqueue v0.4.1-0.20200915164425-df0e7a88e75e/go.mod h1:2++DFT2J51nJW5y262s5LGZzu0ctmuZlSofCHK748UE=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.4/go.mod h1:vzj43D7+SQXF/4pzW/hwtAqwc6iTitCiVSaWz5lYuqw=

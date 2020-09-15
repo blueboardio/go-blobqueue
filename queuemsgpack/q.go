@@ -48,3 +48,13 @@ func Shift(q blobqueue.Queue, v interface{}) error {
 	}
 	return msgpack.Unmarshal(b, v)
 }
+
+// Peek returns the head of the queue without removing it and deserialize it as MessagePack into v.
+// v must be a pointer (see msgpack.Unmarshal).
+func Peek(q blobqueue.Queue, v interface{}) error {
+	b, err := q.Peek()
+	if err != nil {
+		return err
+	}
+	return msgpack.Unmarshal(b, v)
+}
