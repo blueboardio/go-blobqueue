@@ -73,6 +73,10 @@ func TestQueue(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(l, 1)
 
+	n, err := q.Peek()
+	assert.NoError(err)
+	assert.Equal(n, Uint64(1))
+
 	q.Push(Uint64(2))
 	l, err = q.Len()
 	assert.NoError(err)
@@ -87,7 +91,7 @@ func TestQueue(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(li, []Uint64{1, 2, 3})
 
-	n, err := q.Pop()
+	n, err = q.Pop()
 	assert.NoError(err)
 	assert.Equal(n, Uint64(3))
 

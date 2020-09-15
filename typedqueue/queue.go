@@ -110,6 +110,14 @@ func (q *Queue) Shift() (encoding.BinaryMarshaler, error) {
 	return decodeValue(q.t, b).(encoding.BinaryMarshaler), nil
 }
 
+func (q *Queue) Peek() (encoding.BinaryMarshaler, error) {
+	b, err := q.q.Peek()
+	if err != nil {
+		return q.zero, err
+	}
+	return decodeValue(q.t, b).(encoding.BinaryMarshaler), nil
+}
+
 // List returns all the items of the queue as a slice of values.
 func (q *Queue) List() (interface{}, error) {
 	src, err := q.q.List()
