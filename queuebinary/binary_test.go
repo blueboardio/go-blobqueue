@@ -45,6 +45,14 @@ func TestPushPop(t *testing.T) {
 	}
 
 	var out S
+	err = queuebinary.Peek(q, &out)
+	if err != nil {
+		t.Fatal("Peek should work")
+	}
+	if out != "abc" {
+		t.Fatal("Peek: Bad value")
+	}
+
 	err = queuebinary.Pop(q, &out)
 	if err != nil {
 		t.Fatal("Pop should work")

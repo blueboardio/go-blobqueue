@@ -36,3 +36,11 @@ func Shift(q blobqueue.Queue, v encoding.BinaryUnmarshaler) error {
 	}
 	return v.UnmarshalBinary(b)
 }
+
+func Peek(q blobqueue.Queue, v encoding.BinaryUnmarshaler) error {
+	b, err := q.Peek()
+	if err != nil {
+		return err
+	}
+	return v.UnmarshalBinary(b)
+}
