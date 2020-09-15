@@ -123,6 +123,9 @@ func RunTests(t *testing.T, queue blobqueue.Queue, shouldAlwaysFail bool) {
 			case peekAction:
 				var val []byte
 				val, err = suite.Queue.Peek()
+				if shouldAlwaysFail {
+					action.ExpectVal = nil
+				}
 				assert.Equal(t, action.ExpectVal, val, infoMsg)
 			default:
 				t.Fatalf("Your test suite has unexpected action type at index %d", i)
