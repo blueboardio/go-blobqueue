@@ -35,6 +35,15 @@ func TestPushPop(t *testing.T) {
 		t.Fatal("Len should be 1")
 	}
 
+	var outPeek interface{}
+	err = queuemsgpack.Peek(q, &outPeek)
+	if err != nil {
+		t.Fatal("Peek should work")
+	}
+	if !reflect.DeepEqual(in, outPeek) {
+		t.Fatalf("Peek: Bad value: %#v vs %#v", in, outPeek)
+	}
+
 	var out interface{}
 	err = queuemsgpack.Pop(q, &out)
 	if err != nil {

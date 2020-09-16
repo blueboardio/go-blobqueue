@@ -44,6 +44,13 @@ func (q *Queue) Shift() ([]byte, error) {
 	return save, nil
 }
 
+func (q Queue) Peek() ([]byte, error) {
+	if len(q) == 0 {
+		return nil, blobqueue.ErrQueueIsEmpty
+	}
+	return q[0], nil
+}
+
 // Len implements Queue interface
 func (q Queue) Len() (int, error) {
 	return len(q), nil

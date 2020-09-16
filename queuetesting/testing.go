@@ -16,6 +16,7 @@ const (
 	popAction
 	shiftAction
 	emptyAction
+	peekAction
 )
 
 type action struct {
@@ -38,6 +39,8 @@ var actions = []action{
 	{Type: listAction, ExpectList: nil, ShouldErr: false},
 	{Type: pushAction, Val: []byte("elem 1"), ShouldErr: false},
 	{Type: lenAction, ExpectLen: 1, ShouldErr: false},
+	{Type: peekAction, ExpectVal: []byte("elem 1"), ShouldErr: false},
+	{Type: lenAction, ExpectLen: 1, ShouldErr: false},
 	{Type: unshiftAction, Val: []byte("elem 0"), ShouldErr: false},
 	{Type: lenAction, ExpectLen: 2, ShouldErr: false},
 	{Type: pushAction, Val: []byte("elem 2"), ShouldErr: false},
@@ -56,6 +59,7 @@ var actions = []action{
 	{Type: listAction, ExpectList: nil, ShouldErr: false},
 	{Type: popAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmpty, ExpectVal: nil},
 	{Type: shiftAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmpty, ExpectVal: nil},
+	{Type: peekAction, ShouldErr: true, ExpectErr: blobqueue.ErrQueueIsEmpty, ExpectVal: nil},
 	{Type: lenAction, ExpectLen: 0, ShouldErr: false},
 	{Type: listAction, ExpectList: nil, ShouldErr: false},
 }
@@ -116,6 +120,13 @@ func RunTests(t *testing.T, queue blobqueue.Queue, shouldAlwaysFail bool) {
 			case emptyAction:
 				err = suite.Queue.Empty()
 				break
+			case peekAction:
+				var val []byte
+				val, err = suite.Queue.Peek()
+				if shouldAlwaysFail {
+					action.ExpectVal = nil
+				}
+				assert.Equal(t, action.ExpectVal, val, infoMsg)
 			default:
 				t.Fatalf("Your test suite has unexpected action type at index %d", i)
 			}
