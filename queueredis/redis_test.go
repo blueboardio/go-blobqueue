@@ -1,6 +1,7 @@
 package queueredis_test
 
 import (
+	"errors"
 	"os"
 	"strconv"
 	"testing"
@@ -20,7 +21,11 @@ const (
 )
 
 func instantiateRedisClient() (*redis.Client, error) {
-	db, err := strconv.Atoi(os.Getenv("TEST_QUEUEREDIS_DB"))
+	dbStr, ok := os.LookupEnv("TEST_QUEUEREDIS_DB")
+	if !ok || dbStr == "" {
+		return nil, errors.New("TEST_QUEUEREDIS_DB not set")
+	}
+	db, err := strconv.Atoi(dbStr)
 	if err != nil {
 		return nil, err
 	}
@@ -33,7 +38,9 @@ func instantiateRedisClient() (*redis.Client, error) {
 
 func TestRedisImplem(t *testing.T) {
 	client, err := instantiateRedisClient()
-	assert.Nil(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	defer client.Close()
 	qRedis := queueredis.New(client, testKey)
 	err = client.Del(testKey).Err()
@@ -44,7 +51,9 @@ func TestRedisImplem(t *testing.T) {
 
 func TestRedisBadConnection(t *testing.T) {
 	client, err := instantiateRedisClient()
-	assert.Nil(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	defer client.Close()
 	qRedis := queueredis.New(client, testFailKey)
 	client.Close()
