@@ -5,8 +5,8 @@ package queuemsgpack
 import (
 	"github.com/blueboardio/go-blobqueue"
 
-	// 2020-06-24 v4 is the stable branch
-	"github.com/vmihailenco/msgpack/v4"
+	// 2020-11-18 v5 is the stable branch
+	"github.com/vmihailenco/msgpack/v5"
 )
 
 // Push serialize v as MessagePack and pushes the blob on the queue.
