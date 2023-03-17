@@ -1,0 +1,57 @@
+name: Test
+on: push
+
+jobs:
+  # Label of the container job
+  test:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: golang:1.20
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Performs a clean installation of all dependencies in the `go.mod` file
+      - name: Install go-blobqueue dependencies
+        run: go mod download
+      - name: Install queueredis dependencies
+        run: cd queueredis; go mod download
+      - name: Install queuemsgpack dependencies
+        run: cd queuemsgpack; go mod download
+
+
+      - name: Test blobqueue
+        run: go test -v ./...
+
+      - name: Test queueredis
+        # Runs a script that creates a Redis client, populates
+        # the client with data, and retrieves data
+        run: cd queueredis; go test -v ./...
+        # Environment variable used by the `client.js` script to create a new Redis client.
+        env:
+          # The hostname:port used to communicate with the Redis service container
+          TEST_QUEUEREDIS_ADDR: redis:6379
+          TEST_QUEUEREDIS_DB: 0
+          # TEST_QUEUEREDIS_PWD: ""
+
+      - name: Test queuemsgpack
+        run: cd queuemsgpack; go test -v ./...
+
+      - name: Test typedqueue
+        run: cd typedqueue; go test -v ./...
