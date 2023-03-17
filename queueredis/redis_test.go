@@ -1,12 +1,13 @@
 package queueredis_test
 
 import (
+	"context"
 	"errors"
 	"os"
 	"strconv"
 	"testing"
 
-	"github.com/go-redis/redis/v7"
+	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/blueboardio/go-blobqueue"
@@ -43,7 +44,7 @@ func TestRedisImplem(t *testing.T) {
 	}
 	defer client.Close()
 	qRedis := queueredis.New(client, testKey)
-	err = client.Del(testKey).Err()
+	err = client.Del(context.TODO(), testKey).Err()
 	assert.Nil(t, err, "unable to clear queue before redis implem test")
 	queue := blobqueue.SafeQueue(qRedis)
 	queuetesting.RunTests(t, queue, false)
@@ -68,7 +69,7 @@ func BenchmarkRedisPush(b *testing.B) {
 	}
 	defer client.Close()
 	qRedis := queueredis.New(client, benchKey)
-	err = client.Del(benchKey).Err()
+	err = client.Del(context.TODO(), benchKey).Err()
 	if err != nil {
 		b.Fail()
 	}
