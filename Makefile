@@ -49,12 +49,17 @@ tag.patch:
 
 .PHONY:	upgrade-blobqueue
 
+ifeq ($(tag_prefix), )
+
+upgrade-blobqueue: version = $(shell $(MAKE) go-version)
 ## After a release of the main blobqueue module, upgrade blobqueue in sub modules and tag a minor release
 upgrade-blobqueue:
-	git push --tags
-	V=$$($(MAKE) go-get); for mod in typedqueue queueredis queuemsgpack; do ( cd $$mod; go get github.com/blueboardio/go-blobqueue@$$V && go mod tidy ); done
+	git push $(version)
+	for mod in typedqueue queueredis queuemsgpack; do ( cd $$mod; $(go) get github.com/blueboardio/go-blobqueue@$(version) && go mod tidy ); done
 	git commit -a -m "typedqueue queueredis queuemsgpack: upgrade blobqueue"
-	git tag -a $$(git tag -l --sort=-v:refname $(tag_prefix)'v*' | perl -E '$$_=<>; s/\.([0-9]+)$$/".".($$1+1)/e; print')
+	for mod in typedqueue queueredis queuemsgpack; do $(MAKE) -C $$mod tag.minor; done
+
+endif
 
 .PHONY: bump-tag edit-tag changelog
 
