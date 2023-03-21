@@ -1,5 +1,7 @@
 go ?= GO111MODULE=on go
-tag_prefix ?=
+
+git_root := $(shell git rev-parse --show-toplevel)
+tag_prefix := $(subst $(git_root)/,,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 
 .PHONY: help
 
